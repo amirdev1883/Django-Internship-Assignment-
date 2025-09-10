@@ -1,0 +1,16 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+db.sqlite3
+media/
+staticfiles/
+# tooling
+.coverage
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store

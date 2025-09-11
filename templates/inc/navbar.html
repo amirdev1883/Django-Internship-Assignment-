@@ -6,12 +6,18 @@
         <div style="width: 24px; height: 24px; background-color: #ff5722; display: inline-block; border-radius: 4px; margin-right: 8px;"></div>
         <span style="font-weight: bold; color: #212121;">Formailoo</span>
       </a>
-
+      
       <!-- Right side links -->
+      {% if not request.user.is_authenticated %}
       <div class="d-flex align-items-center ms-auto">
-        <a href="#" class="me-3 text-dark text-decoration-none">Login</a>
-        <a href="#" class="btn btn-dark">Sign up</a>
+        <a href="{% url 'accounts:user_login' %}" class="me-3 text-dark text-decoration-none">Login</a>
+        <a href="{% url 'accounts:user_register' %}" class="btn btn-dark">Sign up</a>
       </div>
+      {% else %}
+      <div class="d-flex align-items-center ms-auto">
+        <a href= "{% url 'accounts:user_logout' %}" class="btn btn-dark">Logout</a>
+      </div>
+      {% endif %}
 
     </div>
   </nav>

@@ -23,6 +23,9 @@ class UserRegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             User.objects.create_user(cd['username'], cd['email'], cd['password1'])
+            user = authenticate(request, username=cd['username'], password=cd['password1'])
+            if user is not None:
+                login(request, user)
             messages.success(request, 'you registered successfully', 'success')
             return redirect("tasks:home")
 

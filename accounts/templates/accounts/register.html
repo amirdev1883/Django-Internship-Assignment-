@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container mt-5" style="max-width: 600px;">
+        <h1 class="text-center mb-4">Registration Form</h1>
+    
+        <form method="post" novalidate>
+          {% csrf_token %}
+    
+          {% for field in form %}
+            <div class="mb-3">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <div class="text-danger small">
+                  {{ field.errors }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+    
+          <div class="d-grid">
+            <input type="submit" value="Register" class="btn btn-info">
+          </div>
+        </form>
+      </div>
+{% endblock %}

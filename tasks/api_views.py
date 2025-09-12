@@ -8,6 +8,7 @@ from drf_yasg.utils import swagger_auto_schema
 class TaskListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
+    @swagger_auto_schema(responses={200: TaskSerializer(many=True)})
     def get(self, request):
         tasks = Task.objects.filter(owner=request.user)
         serializer = TaskSerializer(tasks, many=True)

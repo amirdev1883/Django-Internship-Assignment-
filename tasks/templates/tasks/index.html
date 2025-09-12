@@ -1,4 +1,31 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 {% block content %}
-HOME
+<div class="container mt-5">
+  <div class="text-center">
+    <h1 class="mb-4">Welcome to Task Manager</h1>
+    <p class="lead">Organize your tasks, stay productive, and never miss a deadline.</p>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="card shadow mt-5 p-4 text-center">
+    <img src="{% static 'images/dashboard_icon.jpg' %}" 
+         alt="Dashboard Icon"
+         class="img-fluid mx-auto d-block mb-3"
+         style="max-width: 100px;">
+    <h4 class="mb-3">Your Dashboard</h4>
+    <p class="text-muted">View and manage all your tasks from one place.</p>
+    <a href="{% url 'tasks:task_list' %}" class="btn btn-primary btn-lg">
+      Go to My Dashboard
+    </a>
+  </div>
+  {% else %}
+  <div class="card shadow mt-5 p-4 text-center">
+    <h4 class="mb-3">Get Started</h4>
+    <p class="text-muted">Sign in or create an account to start managing your tasks.</p>
+    <a href="{% url 'accounts:user_login' %}" class="btn btn-outline-primary btn-lg me-2">Login</a>
+    <a href="{% url 'accounts:user_register' %}" class="btn btn-primary btn-lg">Sign Up</a>
+  </div>
+  {% endif %}
+</div>
 {% endblock %}

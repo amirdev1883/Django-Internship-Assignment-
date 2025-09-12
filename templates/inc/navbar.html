@@ -1,23 +1,30 @@
 <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
-    <div class="container-fluid">
+  <div class="container-fluid">
+    <a href="{% url "tasks:home" %}" class="navbar-brand d-flex align-items-center" style="gap: 8px;">
+      <!-- Trimmed SVG: only the icon, tight viewBox -->
+      <svg
+        viewBox="0 0 28.665 28"
+        height="24"  <!-- control size -->
+        aria-hidden="true"
+        style="display:inline-block; vertical-align:middle;">
+        <path d="M26.8735 0H1.79157C0.802111 0 0 0.783502 0 1.75V26.25C0 27.2165 0.802111 28 1.79157 28H26.8735C27.8629 28 28.665 27.2165 28.665 26.25V1.75C28.665 0.783502 27.8629 0 26.8735 0Z" fill="#F76015"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.87603 6.69922C8.71697 6.69922 7.77734 7.61705 7.77734 8.74921C7.77734 9.88142 8.71697 10.7992 9.87603 10.7992H20.2159C21.375 10.7992 22.3146 9.88142 22.3146 8.74921C22.3146 7.61705 21.375 6.69922 20.2159 6.69922H9.87603ZM7.77734 14.8493C7.77734 13.7171 8.71693 12.7992 9.87603 12.7992H16.1209C17.28 12.7992 18.2196 13.7171 18.2196 14.8493C18.2196 15.9814 17.28 16.8993 16.1209 16.8993H9.87603C8.71693 16.8993 7.77734 15.9814 7.77734 14.8493ZM7.77734 20.8992C7.77734 19.7947 8.69404 18.8993 9.82483 18.8993C10.9556 18.8993 11.8723 19.7947 11.8723 20.8992V20.9993C11.8723 22.1038 10.9556 22.9992 9.82483 22.9992C8.69404 22.9992 7.77734 22.1038 7.77734 20.9993V20.8992Z" fill="white"/>
+      </svg>
 
-      <!-- Logo and Brand -->
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <div style="width: 24px; height: 24px; background-color: #ff5722; display: inline-block; border-radius: 4px; margin-right: 8px;"></div>
-        <span style="font-weight: bold; color: #212121;">Formailoo <span style="font-size: 0.8em; color: gray;">Task Manager</span> </span>
-      </a>
-      
-      <!-- Right side links -->
-      {% if not request.user.is_authenticated %}
-      <div class="d-flex align-items-center ms-auto">
-        <a href="{% url 'accounts:user_login' %}" class="me-3 text-dark text-decoration-none">Login</a>
-        <a href="{% url 'accounts:user_register' %}" class="btn btn-dark">Sign up</a>
-      </div>
-      {% else %}
-      <div class="d-flex align-items-center ms-auto">
-        <a href= "{% url 'accounts:user_logout' %}" class="btn btn-dark">Logout</a>
-      </div>
-      {% endif %}
+      <span style="font-weight:700; color:#212121;">
+        Formailoo <span style="font-size:.85em; color:gray;">Task Manager</span>
+      </span>
+    </a>
 
+    {% if not request.user.is_authenticated %}
+    <div class="d-flex align-items-center ms-auto">
+      <a href="{% url 'accounts:user_login' %}" class="me-3 text-dark text-decoration-none">Login</a>
+      <a href="{% url 'accounts:user_register' %}" class="btn btn-dark">Sign up</a>
     </div>
-  </nav>
+    {% else %}
+    <div class="d-flex align-items-center ms-auto">
+      <a href="{% url 'accounts:user_logout' %}" class="btn btn-dark">Logout</a>
+    </div>
+    {% endif %}
+  </div>
+</nav>

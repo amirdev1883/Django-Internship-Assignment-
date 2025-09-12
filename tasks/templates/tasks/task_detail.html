@@ -21,8 +21,7 @@
 
     <div class="d-flex justify-content-between">
       <a href="{% url 'tasks:task_update' task.id %}" class="btn btn-primary">Edit</a>
-      <a href="" class="btn btn-secondary">Back to List</a>
-      {% comment %} add link on top latter {% endcomment %}
+      <a href="{% url 'tasks:task_list' %}" class="btn btn-secondary">Back to List</a>
     </div>
   </div>
 </div>

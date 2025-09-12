@@ -29,7 +29,9 @@
         <label class="form-check-label">Completed</label>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Create</button>
+      <button type="submit" class="btn btn-primary w-100">
+        {% if update %}Update Task{% else %}Create Task{% endif %}
+      </button>
     </form>
   </div>
 </div>

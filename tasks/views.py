@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import TaskUpdateCreateForm
 from.models import Task
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseForbidden
 
 class HomeView(View):
     def get(self, request):
@@ -25,7 +26,7 @@ class TaskCreateView(LoginRequiredMixin, View):
             new_task.save()
             messages.success(request, f'you created the task{new_task.title} successfully', 'success')
             return redirect("tasks:home")  #change it later ----------------------------------------------- task list ----------
-        # error message -----------------------------------------------------------
+        # error message should be here -----------------------------------------------------------
         return render(request, "tasks/task_create_update.html", {"form": form})
     
 
@@ -56,20 +57,13 @@ class TaskUpdateView(LoginRequiredMixin, View):
         if form.is_valid():
             form.save()
             messages.success(request, 'you updated the task successfully', 'success')
-            return redirect("tasks:home") # change after to task detail 
+            return redirect("tasks:task_detail", task_id=task.id)  
 
 
-
-
-    # def get(self, request, pk):
-    #     task = get_object_or_404(Task, pk=pk, owner=request.user)
-    #     form = self.form_class(instance=task)
-    #     return render(request, "tasks/task_form.html", {"form": form, "update": True})
-
-    # def post(self, request, pk):
-    #     task = get_object_or_404(Task, pk=pk, owner=request.user)
-    #     form = TaskUpdateCreateForm(request.POST, instance=task)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("tasks:task_list")
-    #     return render(request, "tasks/task_form.html", {"form": form, "update": True})
+class TaskDetailView(LoginRequiredMixin, View):
+    def get(self, request, task_id):
+        task = get_object_or_404(Task, pk=task_id, owner=request.user)
+        if task.owner != request.user:
+            return HttpResponseForbidden("You are not allowed to view this task.")
+        return render(request, "tasks/task_detail.html", {"task": task})
+    

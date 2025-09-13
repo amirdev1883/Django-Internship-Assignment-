@@ -32,12 +32,13 @@ class TaskDetailAPIView(APIView):
         except Task.DoesNotExist:
             return None
 
-    def get(self, request, pk):
-        task = self.get_object(pk, request.user)
-        if not task:
-            return Response({"error": "Not found"}, status=status.HTTP_404_NOT_FOUND)
-        serializer = TaskSerializer(task)
-        return Response(serializer.data)
+    # [GET] → retrieve task 
+    # def get(self, request, pk):
+    #     task = self.get_object(pk, request.user)
+    #     if not task:
+    #         return Response({"error": "Not found"}, status=status.HTTP_404_NOT_FOUND)
+    #     serializer = TaskSerializer(task)
+    #     return Response(serializer.data)
 
     @swagger_auto_schema(request_body=TaskSerializer)
     def put(self, request, pk):

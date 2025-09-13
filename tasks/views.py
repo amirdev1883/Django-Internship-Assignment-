@@ -27,8 +27,8 @@ class TaskCreateView(LoginRequiredMixin, View):
             new_task.owner = request.user
             new_task.save()
             messages.success(request, f'you created the task{new_task.title} successfully', 'success')
-            return redirect("tasks:task_detail", task_id=new_task.id)  #change it later ----------------------------------------------- task list ----------
-        # error message should be here -----------------------------------------------------------
+            return redirect("tasks:task_detail", task_id=new_task.id)  
+        messages.error(request, 'form is not valid try again', 'danger')
         return render(request, "tasks/task_create_update.html", {"form": form})
     
 

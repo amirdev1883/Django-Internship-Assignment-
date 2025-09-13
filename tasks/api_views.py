@@ -9,13 +9,13 @@ class TaskListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     @swagger_auto_schema(responses={200: TaskSerializer(many=True)})
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         tasks = Task.objects.filter(owner=request.user)
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=TaskSerializer)
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = TaskSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(owner=request.user)
@@ -32,8 +32,10 @@ class TaskDetailAPIView(APIView):
         except Task.DoesNotExist:
             return None
 
-    # [GET] → retrieve task 
-    # def get(self, request, pk):
+    # Retrieve taks
+    # --------------- 
+    # def get(self, request, *args, **kwargs):
+    #     pk = kwargs.get("pk")
     #     task = self.get_object(pk, request.user)
     #     if not task:
     #         return Response({"error": "Not found"}, status=status.HTTP_404_NOT_FOUND)
@@ -41,17 +43,19 @@ class TaskDetailAPIView(APIView):
     #     return Response(serializer.data)
 
     @swagger_auto_schema(request_body=TaskSerializer)
-    def put(self, request, pk):
+    def put(self, request, *args, **kwargs):
+        pk = kwargs.get("pk")
         task = self.get_object(pk, request.user)
         if not task:
             return Response({"error": "Not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = TaskSerializer(task, data=request.data)
         if serializer.is_valid():
-            serializer.save(owner=request.user)  
+            serializer.save(owner=request.user)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get("pk")
         task = self.get_object(pk, request.user)
         if not task:
             return Response({"error": "Not found"}, status=status.HTTP_404_NOT_FOUND)

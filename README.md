@@ -21,13 +21,13 @@ A simple task management app built with **Django** and **Django REST Framework**
 ## 🛠️ Tech Stack
 
 - **Backend:** Django, Django REST Framework  
-- **Database:** PostgreSQL (or SQLite for development)  
+- **Database:**  SQLite  
 - **Authentication:** Django built-in authentication  
 - **Documentation:** Swagger (drf-yasg)  
 
 ---
 
-## 📸 Screenshots (Optional)
+## 📸 Demo
 
 ![Demo of Task Manager](assets/demo.gif)
 
@@ -38,8 +38,8 @@ A simple task management app built with **Django** and **Django REST Framework**
 Clone the repository and set up the environment:
 
 \`\`\`bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/amirdev1883/Django-Internship-Assignment-.git
+cd Django-Internship-Assignment-
 
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate

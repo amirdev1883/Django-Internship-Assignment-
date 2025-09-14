@@ -69,9 +69,9 @@ Swagger UI is available at:
 
 ## 🧪 Running Tests
 
-\`\`\`bash
+```bash
 python manage.py test
-\`\`\`
+```
 
 
 ## 🍺 License

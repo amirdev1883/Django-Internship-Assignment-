@@ -37,7 +37,7 @@ A simple task management app built with **Django** and **Django REST Framework**
 
 Clone the repository and set up the environment:
 
-\`\`\`bash
+```bash
 git clone https://github.com/amirdev1883/Django-Internship-Assignment-.git
 cd Django-Internship-Assignment-
 
@@ -47,7 +47,7 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-\`\`\`
+```
 
 Visit **http://127.0.0.1:8000/** in your browser.
 

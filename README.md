@@ -27,6 +27,14 @@ A simple task management app built with **Django** and **Django REST Framework**
 
 ---
 
+## 🌐 Live Demo
+
+🔗 **[Check out the live demo here](https://django-internship-assignment-388g.onrender.com/)**  
+
+> ⚠️ Note: The live demo is deployed on Render free tier — it may take a few seconds to spin up if inactive.
+
+---
+
 ## 📸 Demo
 
 ![Demo of Task Manager](assets/demo.gif)
